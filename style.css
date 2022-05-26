@@ -1,0 +1,269 @@
+.top_nav {
+  position: fixed;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  top:0px;
+}
+.nav {
+  position: fixed;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  top:34px;
+}
+body {
+  margin:0;
+  color:#23395d;
+  font-family: Arial, Helvetica, sans-serif;
+}
+.navbar_top {
+ 
+  object-fit: contain;
+  width: 375px;
+  height: auto;
+  overflow: hidden;
+  background-color: whitesmoke;
+  position: fixed;
+  align-content: right;
+  width: 100%;
+  display: flex;
+
+}
+.navbar_top a {
+  float: left;
+  display: block;
+  text-align: center;
+  padding: 8px 16px;
+  text-decoration: none;
+  font-size: 17px;
+  color: #333;
+  font-family: Arial, Helvetica, sans-serif;
+
+}
+.navbar_top a:hover {
+  background: #23395d;
+  color: floralwhite
+}
+.navbar {
+  object-fit: contain;
+  width: 375px;
+  height: auto;
+  overflow: hidden;
+  background-color: #333;
+  position: fixed;
+  width: 100%;
+  display: flex;
+}
+.navbar a {
+  float: left;
+  display: block;
+  text-align: center;
+  padding: 25px 16px;
+  text-decoration: none;
+  font-size: 17px;
+  color: #f4f5f6;
+  font-family: Arial, Helvetica, sans-serif;
+}
+.navbar_left a {
+  float: right;
+  display: block;
+  text-align: center;
+  padding: 25px 16px;
+  text-decoration: none;
+  font-size: 17px;
+  color: #f4f5f6;
+  font-family: Arial, Helvetica, sans-serif;
+}
+.navbar a:hover {
+  background: #DAA520 ;
+}
+section {
+  display:none;
+}
+section:target {
+  display: block;
+ }
+  @keyframes fadeInOpacity {
+	0% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 1;
+} 
+}
+.main {
+  background-color: #23395d;
+  width: 100%;
+  height: 1050px;
+  box-sizing: border-box;
+}  
+.middle_bar {
+  border-width: 8px;
+  border-color: grey;
+  border-style:solid;
+  width:70%;
+  height: 900px;
+  background-color:whitesmoke;
+  margin-left: auto;
+  margin-right: auto;
+    margin-top: 85px; 
+    padding: 3%;
+}  
+h1 {
+  border: 6px lightgrey;
+  background-color: ivory;
+  border-radius: 8px;
+  border-style: solid !important;
+  padding: 10px;
+  color:#DAA520;
+  animation: fadein 2s;
+  -o-animation: fadein 2s;
+}  
+.CalenderElement {
+  border: 6px grey;
+  border-radius: 8px;
+  padding: 10px;
+  border: 6px lightgrey;
+  background-color: ivory;
+  border-radius: 8px;
+  border-style: solid !important;
+  padding: 10px;
+  color:#DAA520;
+}
+#main_calendar{
+  top: 50%;
+  left: 2%;
+  width: 400px;
+  height: 616px;
+  background-color: #f4f5f6;
+  animation: fadein 2s;
+}
+h3 {
+  margin: 0;
+}
+.Fitness_Assinment{
+  border: 6px lightgrey;
+  background-color: ivory;
+  border-radius: 8px;
+  border-style: solid !important;
+  padding: 10px;
+}
+p {
+  border: 2px black;
+  background-color: ivory;
+  border-radius: 3px;
+  border-style: solid !important;
+  padding: 10px;
+  color:#23395d;
+}
+.turn_in {
+  background-color: #DAA520; 
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+} 
+#down {
+  transform: rotate(45deg);
+  -webkit-transform: rotate(45deg);
+}
+#right {
+  transform: rotate(-45deg);
+  -webkit-transform: rotate(-45deg);
+}
+.arrow {
+  border: solid white;
+  border-width: 0 2px 2px 0;
+  display: inline-block;
+  position:relative;
+  padding: 4.25px;
+  margin-top: 27%;
+  margin-right: 5px ;
+  margin-left: 5px ;
+}
+.arrow:hover {
+  border: solid white;
+  border-width: 0 2px 2px 0;
+  display: inline-block;
+  position:relative;
+  padding: 4.5px;
+  margin-top: 27%;
+  margin-right: 5px ;
+  margin-left: 5px ;
+
+}
+.trooper_group {
+  object-fit: contain;
+  height: auto;
+  overflow: hidden;
+  background-color: #333;
+}
+.trooper_Assinments {
+  object-fit: contain;
+  height: auto;s
+  overflow: hidden;
+  background-color: #333;
+}
+.trooper_group:hover {
+  background: #DAA520;
+}
+.object {
+  border: 6px lightgrey;
+  background-color: ivory;
+  border-radius: 8px;
+  border-style: solid !important;
+  padding: 10px;
+}
+#tableInput {
+  width: 100%; /* Full-width */
+  font-size: 16px; /* Increase font-size */
+  padding-bottom:10px;
+  padding-top:10px; /* Add some padding */
+  border: 1px solid #ddd; /* Add a grey border */
+  margin-bottom: 12px; /* Add some space below the input */
+}
+
+#tableDoneBtn {
+  width: 10%; /* Full-width */
+  font-size: 16px; /* Increase font-size */
+  padding: 12px 20px 12px 40px; /* Add some padding */
+  border: 1px solid #ddd; /* Add a grey border */
+  margin-bottom: 12px; /* Add some space below the input */
+  text-align: center;
+}
+
+#tableDoneBtn:hover {
+  width: 10%; /* Full-width */
+  font-size: 16px; /* Increase font-size */
+  padding: 12px 20px 12px 40px; /* Add some padding */
+  border: 1px solid #ddd; /* Add a grey border */
+  margin-bottom: 12px; /* Add some space below the input */
+  text-align: center;
+  color: #23395d;
+}
+
+#table {
+  border-collapse: collapse; /* Collapse borders */
+  width: 100%; /* Full-width */
+  border: 1px solid #ddd; /* Add a grey border */
+  font-size: 18px; /* Increase font-size */
+}
+
+#table th, #table td {
+  text-align: left; /* Left-align text */
+  padding: 12px; /* Add padding */
+}
+
+#table tr {
+  /* Add a bottom border to all table rows */
+  border-bottom: 1px solid #ddd;
+}
+
+#table tr.header, #table tr:hover {
+  /* Add a grey background color to the table header and on hover */
+  background-color: #f1f1f1;
+}

@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<link rel="stylesheet" href="./style.css" />
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Home | MSP BlueBook</title>
+    <link rel="icon" href="./img/MSPlogoMain.webp">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="/api/all_emp_search.js"></script>
+  </head>
+  <body style="font-family: Arial, Helvetica, sans-serif;">
+
+
+  <!-- TOP Navbar -->   
+  <div class="top_nav">
+    <div class = navbar_top>
+      <!--Login button-->
+      <div class = login_button>
+        <a class='login' href="/login" id="topbar_nav--login">
+        <img src="./img/user.webp" id="topbar_nav--icon"/>Login</a>
+      </div>
+      <!--logout button-->
+      <a href="/logout" id="topbar_nav--logout"></a>
+    </div>  
+  </div>
+  <!-- Navbar -->
+  <div class="nav">
+    <div class="navbar">
+      <!--Home Selector-->
+      <a onclick="showContent('main_user_status--home')">Home</a>
+
+
+      <!--Trooper Section Select-->
+      <div  class = trooper_group>
+        <a style = "padding-right: 2px" onclick="showContent('main_user_status--Troopers')">Troopers</a>
+        <i class="Trooper_arrow" id = "down"></i>
+      </div>
+      <!--Tropper Pop out Contents-->
+      <div id = Trooper_dropdown >
+          <a onclick="showContent('main_user_status--Add_Troopers')">Add Troopers</a>
+      </div> 
+
+
+      <!--Assignments Section select-->
+      <div  class = Assignments_group>
+        <a style = "padding-right: 2px" onclick="showContent('main_user_status--Assignments')">Assignments</a>
+        <i Name = "Assignments_arrow" class="Assignments_arrow" id = "down_A"></i>
+      </div>
+      <!--Assingnments Pop out Contents-->
+      <div id = Assignments_dropdown >
+      <a onclick="showContent('main_user_status--OverDue')">OverDue</a>
+      </div> 
+
+
+      <a onclick="showContent('main_user_status--Eqwitment')">Equipment</a>
+      <!--Settings Selector-->
+      <a onclick="showContent('main_user_status--Settings')">Settings</a>
+      <link rel="icon" href="/img/MSPlogoMain.webp">
+    </div>
+  </div>
+<div class = main>
+  <div class = middle_bar id = middle_bar>
+    
+        <div class = Second_element>
+        <div id="main_user_status--home">
+            <h1 id = title>Home</h1>
+           <!--
+              <div class = Calender_element>
+                <div style = "z-index: auto;" data-tockify-component="calendar" data-tockify-calendar="mspbluebook.gcal"></div>
+                <script data-cfasync="false" data-tockify-script="embed" src="https://public.tockify.com/browser/embed.js"></script>
+              </div>-->
+          </div> 
+        <div id="main_user_status--Troopers">
+            <div>
+              <h1 class = title>Troopers
+            </div>    
+            <div class = object>
+              <input type="text" id="tableInput" onkeyup="makeTable()" placeholder="Search for names..">
+              <table id="table">
+                <tr class="header">
+                  <th style="width:60%;">Name</th>
+                  <th style="width:40%;">Employee Number</th>
+                </tr>
+              </table> 
+            </div>
+          </div> 
+        <div id="main_user_status--Add_Troopers">
+              <h1 class = title> Add Troopers
+          </div>    
+        <div id="main_user_status--Assignments">
+            <h1 class = title>Assignments</h1>
+          </div>
+        <div id = "main_user_status--Overdue">
+
+        </div>
+            <div class = Fitness_Assignments>
+              <h3>Ex Fitness Assignments</h3>
+              <h5>DueDate:  </h5>
+              <p> Discrption of activity...</p>
+              <form>
+                  <input type = button name = turn_in id = turn_in value = 'All Done'>
+              </form>
+            </div>
+  
+        <div id ="main_user_status--Eqwitment">
+            <h1 class = title>Eqwitment</h1>
+          </div>
+        <div id ="main_user_status--Settings">
+            <h1 class = title>Settings</h1>
+          </div>
+          
+  </div>
+</div>  
+
+<script src="/api/getUsr.js"></script>
+<script> 
+  //GETS NICKNAME FROM SERVER
+    document.onload = getUser();
+//GET NICKNAME FROM SERVER TO CHECK IF IS ADMIN
+document.onload = isAdmin();
+function isAdmin(){
+  var textURL = "https://mspbluebook.co/profile";
+//Option with catch
+fetch( textURL )
+//if nickname from json is not admin, set page text ERROR IS NOT ADMIN
+
+    .then(async r=> {
+      if(JSON.parse(await r.text()).name != "admin@mspbluebook.com"){
+        window.location.href = "/404.html";
+    
+      }
+    })
+}
+  
+//if user is logged in, add logout button
+document.onload = isLoggedIn();
+function isLoggedIn(){
+  var textURL = "https://mspbluebook.co/profile";
+  //Option with catch
+  fetch( textURL )
+     .then(async r=> {
+       if(JSON.parse(await r.text())){
+          document.getElementById("topbar_nav--logout").innerHTML = "Logout";
+        }
+      })
+    }
+      
+  //if user is logged in, add logout button
+    document.onload = isLoggedIn();
+    function isLoggedIn(){
+      var textURL = "https://mspbluebook.co/profile";
+      //Option with catch
+        fetch( textURL )
+        .then(async r=> {
+          if(JSON.parse(await r.text())){
+            document.getElementById("topbar_nav--logout").innerHTML = "Logout";
+          }
+        })
+    }
+     
+  //declares a var for current state of arrow 
+    var arrowside_Troopers = "down"
+     
+  //add event listener for arrow
+    document.querySelectorAll('.Trooper_arrow').forEach(item => {
+      item.addEventListener('click', event => {
+        arrowchange_Troopers();
+      })
+    })
+  //arrow onclick 
+    function arrowchange_Troopers(){
+      if (arrowside_Troopers === "down") {
+        var element = document.getElementById("down");
+        element.id = "right";
+        arrowside_Troopers = "right" 
+        document.getElementById("Trooper_dropdown").style.display = "inherit";
+      } 
+      else if (arrowside_Troopers === "right"){
+        var element = document.getElementById("right");
+        element.id = "down";
+        arrowside_Troopers = "down"
+        document.getElementById("Trooper_dropdown").style.display = "none";
+      } 
+        };
+          //declares a var for current state of arrow 
+    var arrowside2 = "down"
+     
+     //add event listener for Assignments arrow 
+       document.querySelectorAll('.Assignments_arrow').forEach(item => {
+         item.addEventListener('click', event => {
+           arrowchange_Assignments();
+         })
+       })
+     //arrow onclick  
+       function arrowchange_Assignments(){
+         if (arrowside2 === "down") {
+           var element2 = document.getElementById("down_A");
+           element2.id = "right_A";
+           arrowside2 = "right" 
+           document.getElementById("Assignments_dropdown").style.display = "inherit";
+         } 
+         else if (arrowside2 === "right"){
+          var element2 = document.getElementById("right_A");
+           element2.id = "down_A";
+           arrowside2 = "down"; 
+           document.getElementById("Assignments_dropdown").style.display = "none";
+         } 
+           };
+  //button that shows content
+    function showContent(content){
+      var content_array = [
+        "main_user_status--home",
+        "main_user_status--Troopers",
+        "main_user_status--Add_Troopers",
+        "main_user_status--OverDue",
+        "main_user_status--Assignments",
+        "main_user_status--Eqwitment",
+        "main_user_status--Settings",
+      ];
+      scrollTo(0,0)
+        for(var i = 0; i < content_array.length; i++){
+          if(content_array[i] == content){
+            document.getElementById(content_array[i]).style.display = "inherit";
+          }
+          else{
+            document.getElementById(content_array[i]).style.display = "none";
+          }
+        }
+    }
+    function setContentInvisible(id){
+      var x = document.getElementById(id);
+      x.style.display = "none";
+    } 
+  //set content to invisible when page loads
+    document.onload = setContentInvisible("main_user_status--Troopers");
+    document.onload = setContentInvisible("main_user_status--Add_Troopers");
+    document.onload = setContentInvisible("main_user_status--Assignments");
+    document.onload = setContentInvisible("main_user_status--OverDue");
+    document.onload = setContentInvisible("main_user_status--Eqwitment");
+    document.onload = setContentInvisible("main_user_status--Settings");
+                     
+  //add drop down menue for Troopers 
+    document.onload = setContentInvisible("Trooper_dropdown")
+    document.onload = setContentInvisible("Assignments_dropdown")
+   
+    var width_total = window.innerWidth;
+    console.log(width_total)
+    
+      if (width_total < 503) {
+      console.log("step 1")
+        let width_set = (function(){
+            document.getElementById("middle_bar").style.width = "80%"
+          }());
+        }
+  //Make Table with       
+    function makeTable() {
+  // Declare variables
+      var input, filter, table, tr, td, i;
+        input = document.getElementById("tableInput");
+        filter = input.value.toUpperCase();
+        table = document.getElementById("table");
+        tr = table.getElementsByTagName("tr");
+
+  // Loop through all table rows, and hide those who don't match the search query
+      for (i = 0; i < tr.length; i++) {
+        td = tr[i].getElementsByTagName("td")[0];
+        if (td) {
+          if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+            tr[i].style.display = "";
+          } else {
+            tr[i].style.display = "none";
+          }
+        }
+      }
+    }
+</script>
